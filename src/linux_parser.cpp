@@ -117,9 +117,23 @@ long LinuxParser::Jiffies() {
   }
   return jiffies; }
 
-// TODO: Read and return the number of active jiffies for a PID
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid[[maybe_unused]]) { return 0; }
+//Read and return the number of active jiffies for a PID
+long LinuxParser::ActiveJiffies(int pid) { 
+  string line, ignore;
+  long utime, stime, cutime, cstime, starttime, total;
+
+  std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
+  if (stream.is_open()) {
+    std::getline(stream, line);
+    std::istringstream linestream(line);
+    linestream >> ignore >> ignore >> ignore >> ignore >> ignore
+    >> ignore >> ignore >> ignore >> ignore >> ignore >> ignore
+    >> ignore >> ignore >> utime  >> stime  >> cutime  >> cstime
+    >> ignore >> ignore >> ignore >> ignore >> starttime;
+  total = utime + stime + cutime + cstime;
+  return total;
+  }
+  return 0; }
 
 
 long LinuxParser::ActiveJiffies() {
@@ -231,6 +245,25 @@ string LinuxParser::User(int pid) {
   return string();
   }
 
-// TODO: Read and return the uptime of a process
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::UpTime(int pid[[maybe_unused]]) { return 0; }
+// Read and return the uptime of a process
+long LinuxParser::UpTime(int pid) { 
+  string line, ignore;
+  long starttime, seconds;
+
+  std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
+  if (stream.is_open()) {
+    std::getline(stream, line);
+    std::istringstream linestream(line);
+    linestream >> ignore >> ignore >> ignore >> ignore >> ignore
+    >> ignore >> ignore >> ignore >> ignore >> ignore >> ignore
+    >> ignore >> ignore >> ignore  >> ignore  >> ignore  >> ignore
+    >> ignore >> ignore >> ignore >> ignore >> starttime;
+  
+  long uptime = LinuxParser::UpTime();
+  long hertz = CLOCKS_PER_SEC; 
+  seconds = uptime - (starttime / hertz);
+
+  return seconds;
+  }
+  return 0;
+}

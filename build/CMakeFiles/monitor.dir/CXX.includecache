@@ -18,20 +18,6 @@ string
 string
 -
 
-/mnt/hgfs/SharedDocs/GitHub/System-Monitor/src/linux_parser.cpp
-dirent.h
--
-unistd.h
--
-string
--
-vector
--
-linux_parser.h
-/mnt/hgfs/SharedDocs/GitHub/System-Monitor/src/linux_parser.h
-process.h
-/mnt/hgfs/SharedDocs/GitHub/System-Monitor/src/process.h
-
 /mnt/hgfs/SharedDocs/GitHub/System-Monitor/src/process.cpp
 unistd.h
 -
