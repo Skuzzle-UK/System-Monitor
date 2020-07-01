@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <cctype>
 #include <sstream>
-#include <string>git
+#include <string>
 #include <vector>
 #include <iostream>
 
@@ -14,20 +14,20 @@ using std::vector;
 
 Process::Process(int pid):pid_(pid){}
  
-//  Return this process's ID
-int Process::Pid() { return this->pid_; }
+
+int Process::Pid() { return pid_; }
 
 // TODO: Return this process's CPU utilization
 float Process::CpuUtilization() { return 0; }
 
-// TODO: Return the command that generated this process - thrown in random int for PID for now but 1228 should be Process::Pid() once that is defined above
-string Process::Command() { return LinuxParser::Command(1228); }
+
+string Process::Command() { return LinuxParser::Command(Process::Pid()); }
 
 // TODO: Return this process's memory utilization
 string Process::Ram() { return string(); }
 
-// TODO: Return the user (name) that generated this process
-string Process::User() { return string(); }
+
+string Process::User() { return LinuxParser::User(pid_); }
 
 // TODO: Return the age of this process (in seconds)
 long int Process::UpTime() { return 0; }
