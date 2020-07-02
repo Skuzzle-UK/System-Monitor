@@ -41,7 +41,6 @@ string Process::User() { return LinuxParser::User(pid_); }
 
 long int Process::UpTime() { return LinuxParser::UpTime(pid_); }
 
-//Overload operator for sort function
 bool Process::operator<(Process const& a) const {
-return (this->CpuUtilization() > a.CpuUtilization());
+return (CpuUtilization() > a.CpuUtilization());
 }
