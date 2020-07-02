@@ -7,6 +7,8 @@ CMakeFiles/monitor.dir/src/format.cpp.o
 CMakeFiles/monitor.dir/src/linux_parser.cpp.o
  ../include/linux_parser.h
  ../include/process.h
+ ../include/processor.h
+ ../include/system.h
  /mnt/hgfs/SharedDocs/GitHub/System-Monitor/src/linux_parser.cpp
 CMakeFiles/monitor.dir/src/main.cpp.o
  ../include/ncurses_display.h
